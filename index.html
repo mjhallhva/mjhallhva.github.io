@@ -96,11 +96,16 @@
         //cM.y -= centerMarker.popup._container.clientHeight/2
         map.setView(map.unproject(cM),14, {animate: true});
     });
-    
-  /* Set up EasyButton */
+	
+  /* Button - All */
 L.easyButton('<span class="target">&target;</span>', function(btn, map){
     map.fitBounds(runLayer.getBounds());
 }).addTo(map);
+    
+  /* Button - Europe */
+L.easyButton('<span class="target">&euro;</span>', function(btn, map){
+    map.setView([51.110339, 8.681576], 5);
+}).addTo(map);    
    
   /*Upload Latitude/Longitude markers from data.csv file, show Title in pop-up, and override initial center and zoom to fit all in map */
   var customLayer = L.geoJson(null, {

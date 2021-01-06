@@ -107,12 +107,13 @@ L.easyButton('<span class="target">&euro;</span>', function(btn, map){
     map.setView([51.110339, 8.681576], 5);
 }).addTo(map);    
    
-  /*Upload Latitude/Longitude markers from data.csv file, show Title in pop-up, and override initial center and zoom to fit all in map */
+  /*Upload Latitude/Longitude markers from data.csv file, show Text in pop-up, and override initial center and zoom to fit all in map */
   var customLayer = L.geoJson(null, {
    onEachFeature: function(feature, layer) {
      layer.bindPopup(feature.properties.Text);
    }
   });
+  
   var runLayer = omnivore.csv('data.csv', null, customLayer)
   .on('ready', function() {
    map.fitBounds(runLayer.getBounds());

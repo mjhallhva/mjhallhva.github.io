@@ -38,7 +38,7 @@
 <body>
 
   <!-- Display the map and title with HTML division tags  -->
-  <div id="map-title">World Map Partner Institutes III</div>
+  <div id="map-title">World Map Partner Institutes I</div>
   <div id="map"></div>
 
   <!-- Create the map content with JavaScript (.js) -->
@@ -98,15 +98,15 @@ L.easyButton('<span class="target">&euro;</span>', function(btn, map){
   /*Upload Latitude/Longitude markers from data.csv file, show Text in pop-up, and override initial center and zoom to fit all in map */
   var customLayer = L.geoJson(null, {
    onEachFeature: function(feature, layer) {
-   layer.bindPopup(feature.properties.Text);
+   /*layer.bindPopup(feature.properties.Text)*/;
    }
   });
 	  
   function onEachFeature(feature, layer) {
         layer.on({
-            click: fillInfo,
-            mouseover: highlightFeature,
-            mouseout: resetHighlight
+            //click: fillInfo,
+            mouseover: layer.bindPopup(feature.properties.Text),
+            mouseout: reset
         });
     }
         function highlightFeature(e) {

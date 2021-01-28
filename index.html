@@ -134,13 +134,14 @@ L.easyButton('<span class="target">&euro;</span>', function(btn, map){
   .on('ready', function() {
    map.fitBounds(runLayer.getBounds());
 	var markers = L.markerClusterGroup({
-        showCoverageOnHover: false,
+        showCoverageOnHover: true,
+	zoomToBoundsOnClick: true,
         maxClusterRadius: 50
 	});
 markers.addLayer(runLayer)
 map.addLayer(markers);
   }).addTo(map);
-  controlLayers.addOverlay(customLayer, 'Markers from data.csv');
+  //controlLayers.addOverlay(customLayer, 'Markers from data.csv');
 
 </script>
 </body>

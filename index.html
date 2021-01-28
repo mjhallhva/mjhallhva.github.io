@@ -38,7 +38,7 @@
 <body>
 
   <!-- Display the map and title with HTML division tags  -->
-  <div id="map-title">World Map Partner Institutes III</div>
+  <div id="map-title">World Map Partner Institutes I</div>
   <div id="map"></div>
 
   <!-- Create the map content with JavaScript (.js) -->
@@ -95,12 +95,12 @@ L.easyButton('<span class="target">&euro;</span>', function(btn, map){
     map.setView([51.110339, 8.681576], 5);
 }).addTo(map);
    
-function eachLayer(layer) {
-    var feature = layer.toGeoJSON();
-    if (feature.properties && feature.properties.data.Text) {
-        layer.bindPopup("Name - " + feature.properties.Text);
-    }
-}
+  /*Upload Latitude/Longitude markers from data.csv file, show Text in pop-up, and override initial center and zoom to fit all in map */
+  var customLayer = L.geoJson(null, {
+   onEachFeature: function(feature, layer) {
+     layer.bindPopup(feature.properties.Text);
+   }
+  });
     
   var runLayer = omnivore.csv('data.csv', null, customLayer)
   .on('ready', function() {
@@ -108,21 +108,16 @@ function eachLayer(layer) {
 	var markers = L.markerClusterGroup({
         showCoverageOnHover: true,
 	zoomToBoundsOnClick: true,
-        maxClusterRadius: 50
+        maxClusterRadius: 5000
 	});
 markers.addLayer(runLayer);
 map.addLayer(markers);
 runLayer.eachLayer(eachLayer);
-  })/*.addTo(map)*/;
+  }).addTo(map);
 
-//  /*Upload Latitude/Longitude markers from data.csv file, show Text in pop-up, and override initial center and zoom to fit all in map */
-//  var customLayer = L.geoJson(null, {
-//   onEachFeature: function(feature, layer) {
-//     layer.bindPopup(feature.properties.Text);
-//   }
-//  });
-//	  
-//  controlLayers.addOverlay(customLayer, 'Markers from data.csv');
+
+	  
+controlLayers.addOverlay(customLayer, 'Markers from data.csv');
 
 </script>
 </body>

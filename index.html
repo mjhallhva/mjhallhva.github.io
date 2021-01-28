@@ -98,7 +98,7 @@ L.easyButton('<span class="target">&euro;</span>', function(btn, map){
   /*Upload Latitude/Longitude markers from data.csv file, show Text in pop-up, and override initial center and zoom to fit all in map */
   var customLayer = L.geoJson(null, {
    onEachFeature: function(feature, layer) {
-   layer.bindPopup('mouseover',feature.properties.Text);
+   layer.bindPopup(feature.properties.Text);
    }
   });
     

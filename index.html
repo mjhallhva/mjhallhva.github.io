@@ -23,7 +23,10 @@
   <!-- Load Spiderfier -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OverlappingMarkerSpiderfier-Leaflet/0.2.6/oms.min.js"></script>
 
-
+<!-- Load Marker Cluster -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+  <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
   
   <!-- Position the map and title with Cascading Style Sheet (.css) -->
   <style>
@@ -74,7 +77,8 @@ var OSMcolour = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
     [90, 180]
   ]
 }).addTo(map); 
-    
+controlLayers.addBaseLayer(light, 'OSM');   
+	  
   /* Carto light-gray basemap tiles with labels */
   var light = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>',   noWrap: true,
@@ -130,6 +134,11 @@ L.easyButton('<span class="target">&euro;</span>', function(btn, map){
   var runLayer = omnivore.csv('data.csv', null, customLayer)
   .on('ready', function() {
    map.fitBounds(runLayer.getBounds());
+	var markers = L.markerClusterGroup({
+        showCoverageOnHover: false,
+        maxClusterRadius: 50
+	});
+markers.addLayer(runLayer)
   }).addTo(map);
   controlLayers.addOverlay(customLayer, 'Markers from data.csv');
 

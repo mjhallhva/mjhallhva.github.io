@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>AUAS World Map Partner Institutes II</title>
+  <title>AUAS World Map Partner Institutes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
 
@@ -38,7 +38,7 @@
 <body>
 
   <!-- Display the map and title with HTML division tags  -->
-  <div id="map-title">World Map Partner Institutes</div>
+  <div id="map-title">World Map Partner Institutes I</div>
   <div id="map"></div>
 
   <!-- Create the map content with JavaScript (.js) -->
@@ -138,10 +138,10 @@ L.easyButton('<span class="target">&euro;</span>', function(btn, map){
 	zoomToBoundsOnClick: true,
         maxClusterRadius: 50
 	});
-markers.addLayer(runLayer)
+markers.addLayer(runLayer);
 map.addLayer(markers);
   }).addTo(map);
-  //controlLayers.addOverlay(customLayer, 'Markers from data.csv');
+  controlLayers.addOverlay(customLayer, 'Markers from data.csv');
 
 </script>
 </body>

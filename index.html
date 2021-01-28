@@ -101,7 +101,20 @@ L.easyButton('<span class="target">&euro;</span>', function(btn, map){
    layer.bindPopup(feature.properties.Text);
    }
   });
-    
+	  
+  function onEachFeature(feature, layer) {
+        layer.on({
+            click: fillInfo,
+            mouseover: highlightFeature,
+            mouseout: resetHighlight
+        });
+    }
+        function highlightFeature(e) {
+        var layer = e.target; 
+
+        layer.bindPopup(layer.feature.properties.name)
+            .openPopup();}	  
+	  
   var runLayer = omnivore.csv('data.csv', null, customLayer)
   .on('ready', function() {
    map.fitBounds(runLayer.getBounds());
